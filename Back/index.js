@@ -4,11 +4,12 @@ import mongoose from "mongoose";
 import cors from 'cors';
 
 
+
 const app = express();
 const port = process.env.PORT;
 
 
-app.use(cors({origin:"http://localhost:5173"}));
+app.use(cors({origin:"http://localhost:5173/"}));
 
 // app.use(cors({
 //     origin:[" http://localhost:5173/"],
@@ -21,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-await mongoose.connect("mongodb://127.0.0.1:27017/todolistfullstack");
+await mongoose.connect("mongodb+srv://shikharkhandelwal27:48cac0MwaFYt0zYs@cluster0.dlqaa.mongodb.net/todolistfullstack?retryWrites=true&w=majority&appName=Cluster0");
 
 // Schema
 

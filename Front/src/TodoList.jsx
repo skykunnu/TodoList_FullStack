@@ -104,7 +104,7 @@
   <ul className='w-[450px] px-5 mx-[27rem]'>
     {tasks.length>0 ? (
       tasks.map((task)=>( 
-        <li key={task.id}  className="list-none flex items-center justify-between gap-5  mt-4 bg-[#D882B5] px-4 w-[26.8rem] py-2 rounded-md">
+        <li key={task.id}  className="list-none flex items-center justify-between gap-5  mt-4 bg-[#f1a3d2] px-4 w-[26.8rem] py-2 rounded-md">
           <div className='flex items-center justify-center gap-10'>
           <input type="checkbox" checked={task.completed} onChange={()=>toggleComplete(task.id)} />
           <span style={{textDecoration:task.completed? "line-through": "none"}} className='text-2xl'>{task.title}</span>
