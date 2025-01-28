@@ -1,9 +1,9 @@
 import TodoList from './TodoList'
-
+import bgImg from "./assets/BgImage.jpg"
 function App() {
 
   return (
-    <div className='h-screen bg-cover bg-no-repeat bg-center py-10 bg-[url(https://cdn.pixabay.com/photo/2021/11/19/19/28/businesswoman-6810127_960_720.jpg)]'>
+    <div className='h-[100vh] w-[100vw] bg-no-repeat bg-cover bg-center py-8 backdrop-blur-md bg-black/10' style={{backgroundImage:`url(${bgImg})` }}>
     <TodoList/>
        
     </div>
