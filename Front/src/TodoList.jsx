@@ -13,7 +13,7 @@
     }, [tasks])
 
     async function fetchData(){
-      const result=await axios.get('http://localhost:3000/api/todos/get')
+      const result=await axios.get('https://todolist-fullstack-61xi.onrender.com/api/todos/get')
       setTasks(result.data);
     }
 
@@ -26,7 +26,7 @@
           id:idToEdit,
           title:input,
         };
-        const response = await axios.put(`http://localhost:3000/api/todos/edit/${idToEdit}`, obj);
+        const response = await axios.put(`https://todolist-fullstack-61xi.onrender.com/api/todos/edit/${idToEdit}`, obj);
 
       if(response.data.message==="Todo Updated"){
         fetchData();
@@ -43,7 +43,7 @@
         title:input,
         completed:false,
       };
-      const response=await axios.post("http://localhost:3000/api/todos/add",obj)
+      const response=await axios.post("https://todolist-fullstack-61xi.onrender.com/api/todos/add",obj)
   if(response.status===201 && response.data.message==="Todo Saved"){
     fetchData()
   }
@@ -56,7 +56,7 @@
 
 
   async function handleDelete(id){
-    const response=await axios.delete(`http://localhost:3000/api/todos/delete/${id}`);
+    const response=await axios.delete(`https://todolist-fullstack-61xi.onrender.com/api/todos/delete/${id}`);
     if(response.data.message==="Todo Deleted"){
       fetchData();
     }
@@ -78,7 +78,7 @@
       completed: !task.completed,
     };
 
-    const response = await axios.put(`http://localhost:3000/api/todos/edit/${id}`, updatedTask);
+    const response = await axios.put(`https://todolist-fullstack-61xi.onrender.com/api/todos/edit/${id}`, updatedTask);
     if (response.data.message === "Todo Updated") {
       fetchData();
     }
