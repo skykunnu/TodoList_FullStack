@@ -1,4 +1,4 @@
-import { Todo } from "../models/todoModel";
+import { Todo } from "../models/todoModel.js";
 import mongoose from "mongoose"
 
 
