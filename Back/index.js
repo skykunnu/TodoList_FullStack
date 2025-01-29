@@ -2,8 +2,8 @@ import express from "express";
 import "dotenv/config";
 import mongoose from "mongoose";
 import cors from 'cors';
-
-
+import { connectToDB } from "./connection/Db.js";
+import todoRouter from "./routes/todoRoutes.js";
 
 const app = express();
 const port = process.env.PORT;
@@ -22,51 +22,58 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-await mongoose.connect("mongodb+srv://shikharkhandelwal27:48cac0MwaFYt0zYs@cluster0.dlqaa.mongodb.net/todolistfullstack?retryWrites=true&w=majority&appName=Cluster0");
+// await mongoose.connect("mongodb+srv://shikharkhandelwal27:48cac0MwaFYt0zYs@cluster0.dlqaa.mongodb.net/todolistfullstack?retryWrites=true&w=majority&appName=Cluster0");
+await connectToDB();
 
 // Schema
 
-const todoSchema= new mongoose.Schema({
-    id:{type:String, required: true},
-    title:{type:String, required: true},
-    completed:{type:Boolean, required: true},
-})
+// const todoSchema= new mongoose.Schema({
+//     id:{type:String, required: true},
+//     title:{type:String, required: true},
+//     completed:{type:Boolean, required: true},
+// })
 
-const Todo=mongoose.model("Todo", todoSchema);
+// export const Todo=mongoose.model("Todo", todoSchema);
+
+
+app.use("/api/todos",todoRouter);
 
 
 
-app.get("/api/todos/get",async(req,res)=>{
+
+// app.get("/api/todos/get",async(req,res)=>{
     
-const todos=await Todo.find();
-res.send(todos);
-})
+// const todos=await Todo.find();
+// res.send(todos);
+// })
 
-app.post("/api/todos/add",async(req,res)=>{
 
-const {id, title, completed}=req.body;
-const newTodo= new Todo({
-id,
-title,
-completed,
 
-});
-await newTodo.save();
-res.status(201).send({message:"Todo Saved"});
-})
+// app.post("/api/todos/add",async(req,res)=>{
 
-app.put("/api/todos/edit/:id",async(req,res)=>{
-    const id=req.params.id;
-    const {title, completed}=req.body;
-    await Todo.findOneAndUpdate({id},{title,completed});
-    res.send({meesage: "Todo Updated"});
-})
+// const {id, title, completed}=req.body;
+// const newTodo= new Todo({
+// id,
+// title,
+// completed,
 
-app.delete("/api/todos/delete/:id", async(req,res)=>{
-    const id=req.params.id;
-    await Todo.findOneAndDelete({id});
-    res.send({message:"Todo Deleted"});
-});
+// });
+// await newTodo.save();
+// res.status(201).send({message:"Todo Saved"});
+// })
+
+// app.put("/api/todos/edit/:id",async(req,res)=>{
+//     const id=req.params.id;
+//     const {title, completed}=req.body;
+//     await Todo.findOneAndUpdate({id},{title,completed});
+//     res.send({meesage: "Todo Updated"});
+// })
+
+// app.delete("/api/todos/delete/:id", async(req,res)=>{
+//     const id=req.params.id;
+//     await Todo.findOneAndDelete({id});
+//     res.send({message:"Todo Deleted"});
+// });
 
 
 app.listen(port, () => {
