@@ -12,7 +12,7 @@ const port = process.env.PORT;
 app.use(cors({origin:"https://todolist-fullstack-1-cuie.onrender.com"}));
 
 // app.use(cors({
-//     origin:[" http://localhost:5173/"],
+//     origin:[" http://localhost:5173"],
 //     method:["POST, GET"],
 //     Credential:true
 // }))
@@ -37,13 +37,13 @@ const Todo=mongoose.model("Todo", todoSchema);
 
 
 app.get("/api/todos/get",async(req,res)=>{
-    console.log('Shikhar')
+    
 const todos=await Todo.find();
 res.send(todos);
 })
 
 app.post("/api/todos/add",async(req,res)=>{
-console.log('rishi')
+
 const {id, title, completed}=req.body;
 const newTodo= new Todo({
 id,
